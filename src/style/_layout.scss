@@ -1,0 +1,127 @@
+.container {
+    max-width: 40rem;
+    min-height: 20rem;
+    margin: 10px auto;
+    box-shadow: 0 0 1px rgba(0, 0, 0, .5);
+    border-radius: 2rem;
+    overflow: hidden;
+}
+
+.header {
+    padding: .5rem 2rem;
+    background-color: var(--color-primary);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    &__title {
+        line-height: 1;
+    }
+    &:hover &__btn {
+        opacity: 1;
+    }
+}
+
+.wrapper {
+    display: flex;
+    flex-direction: column;
+    padding: 1.2rem;
+}
+
+.search {
+    margin-top: 50%;
+}
+
+.weather {
+    &__list {}
+    &__item {
+        display: flex;
+        flex-direction: column;
+    }
+    &__actual {
+        display: flex;
+        align-items: center;
+        padding: .2rem 0;
+        border-bottom: .1rem solid var(--color-primary);
+    }
+    &__col {
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+    }
+    &__time {
+        font-size: 1.2rem;
+    }
+    &__location {
+        display: flex;
+        font-size: 1.6rem;
+    }
+    &__icon {
+        width: 3rem;
+        height: 3rem;
+        background-color: red;
+    }
+    &__temp {
+        display: flex;
+        margin-left: 2rem;
+        font-size: 4.5rem;
+        line-height: 1.2;
+        font-weight: 300;
+        span {
+            font-size: 2.5rem;
+        }
+    }
+    &__drag,
+    &__delete {
+        display: none;
+    }
+}
+
+.container--active {
+    display: flex;
+    width: 3.5rem;
+    align-items: center;
+    justify-content: center;
+}
+
+.days {
+    margin: .5rem 0;
+    max-height: 0px;
+    overflow: hidden;
+    transition: max-height 0.2s ease-out;
+    &__list {
+        display: flex;
+        flex-direction: column;
+    }
+    &__item {
+        display: flex;
+        flex: 1;
+        justify-content: space-between;
+        font-size: 1.4rem;
+        margin-bottom: .5rem;
+    }
+    &__weekday {
+        flex: 1;
+    }
+    &__sky {
+        flex: 1;
+        align-items: center;
+        display: flex;
+    }
+    &__icon {
+        // width: 1rem;
+        // height: 1rem;
+        // background-color: red;
+        margin-right: 1rem;
+    }
+    &__avtemp {
+        display: flex;
+    }
+    &__mintemp {
+        margin-left: 1rem;
+    }
+}
+
+.days-isVisible {
+    display: block;
+    transition: max-height 0.2s
+}
