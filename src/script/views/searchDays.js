@@ -13,7 +13,7 @@ export const clearList = () => {
 
 
 // redner results for each day
-const renderResult = (result, id) => {
+const renderResult = (result, icons, id) => {
     const {
         clouds,
         dt,
@@ -22,18 +22,23 @@ const renderResult = (result, id) => {
             min
         }
     } = result
+    // console.log(result);
+    const icon = icons[0]
+    const main = icons[1]
 
     const markup = `
     <li class="days__item">
             <div class="days__weekday">${getDay(dt)}</div>
             <div class="days__sky">
-                <div class="days__icon">${result.weather[0].icon}</div>
-                <div class="days__probability">${clouds}</div>
+                    <figure  class="days__icon">
+                    <img class="icon" src=${icon} alt=${main}>
+                </figure>
+                <div class="days__probability">${clouds}%</div>
             </div>
 
             <div class="days__avtemp">
-                <div class="days__maxtemp">${calcTemp(max)}</div>
-                <div class="days__mintemp">${calcTemp(min)}</div>
+                <div class="days__temp days__maxtemp">${calcTemp(max)}</div>
+                <div class="days__temp days__mintemp">${calcTemp(min)}</div>
             </div>
         </li>
     `
@@ -42,8 +47,8 @@ const renderResult = (result, id) => {
 
 
 //loop over all days from five days forecast
-export const renderResults = (results, id) => {
-    results.forEach(result => renderResult(result, id));
+export const renderResults = (results, icons, id) => {
+    results.forEach((result, index) => renderResult(result, icons[index], id));
 }
 
 const getDay = (dt) => {
@@ -65,7 +70,7 @@ export const toggleDays = (id) => {
         showElement(item)
     }
 }
-const hideElement = (item) => {
+export const hideElement = (item) => {
     item.classList.remove('days-isVisible')
     item.style.maxHeight = 0;
 

@@ -22,39 +22,47 @@ export const renderResult = (search) => {
         weather,
         timezone,
         stringName,
+        icon
     } = search
 
     const markup = `
-      <li class="weather__item" data-itemid="${id}">
-             <div class="weather__actual">
+    <li class="weather__item" data-itemid="${id}" draggable="true">
+        <div class="weather__actual">
             <div class="weather__delete">
-      <button class="weather__btn btn"><span>&#8211;</span></button>
-                    </div>
-                    <div class="weather__col">
-                        <div class="weather__time ${stringName}">${setTime(timezone)}</div>
-                        <div class="weather__location">
-                            <div class="weather__city">${name}</div>
-                            <span>&#160;</span>
-                            <div class="weather__country">${country}</div>
-                        </div>
-                    </div>
-
-                    <div class="weather__icon">${weather.description}</div>
-                    <div class="weather__temp">${calcTemp(temperature)}<span>&#176;</span></div>
-                    <div class="weather__drag">
-                        <span class="material-icons weather__drag-icon">
-                menu
-              </span></div></div>
-                 <div class="weather__days days" data-dayid="${id}"><ul class="days__list"></ul></div>
-                </li>`
+                <button class="weather__btn btn">
+                    <span>&#8211;</span>
+                </button>
+            </div>
+            <div class="weather__col">
+                <div class="weather__time ${stringName}">${setTime(timezone)}</div>
+                <div class="weather__location">
+                    <div class="weather__city">${name}</div>
+                        <span>&#160;</span>
+                    <div class="weather__country">${country}</div>
+                </div>
+            </div>
+            <figure  class="weather__icon">
+                <img class="icon" src=${icon} alt="${weather.main}">
+            </figure>
+            <div class="weather__temp">${calcTemp(temperature)}</div>
+                            <sapn class="weather__deg" >&#176;</sapn>
+            <div class="weather__drag">
+                <span class="material-icons weather__drag-icon">
+                menu</span>
+            </div>
+        </div>
+        <div class="weather__days days" data-dayid="${id}">
+            <ul class="days__list"></ul>
+        </div>
+    </li>`
 
 
     document.querySelector(".weather__list").insertAdjacentHTML('beforeend', markup)
 
 
-    setInterval(() => {
-        document.querySelector(`.${stringName}`).textContent = setTime(timezone)
-    }, 1000)
+    // setInterval(() => {
+    //     document.querySelector(`.${stringName}`).textContent = setTime(timezone)
+    // }, 1000)
 
     // setTime(timezone)
 
@@ -87,20 +95,21 @@ const calcClock = (date) => {
 
 export const deleteItem = (id) => {
     const item = document.querySelector(`[data-itemid="${id}"]`)
-    if (item) return item.parentElement.removeChild(item)
-    renderResult()
+    if (item) {
+        item.parentElement.removeChild(item)
+        const items = document.querySelectorAll('.weather__item')
+        if (items.length == 0) {
+            elements.weatherList.classList.remove('edit')
+        }
+
+    }
 
 }
-
 export const updateClock = () => {
     const time = document.querySelectorAll('.weather__time')
-    console.log(time);
+        // console.log(time);
 
 }
-
-
-
-
 
 // function updateClocks() {
 //     for (let clock of clocks) {

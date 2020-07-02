@@ -3,7 +3,7 @@
 
 <head>
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
     <link href="https://fonts.googleapis.com/css2?family=Lato&display=swap" rel="stylesheet" />
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" />
     <title>Weather App</title>
@@ -13,81 +13,41 @@
     <div class="container">
         <header class="header">
             <h1 class="header__title">Weather</h1>
-            <button class="header__btn btn"><span>&#8505;</span></button>
+            <button class="header__btn btn">
+                <span>&#8505;</span>
+            </button>
         </header>
         <main class="wrapper">
             <section class="weather">
-                <ul class="weather__list">
-                    <!-- <li class="weather__item" data-itemid="756135">
-                        <div class="weather__actual">
-                            <div class="weather__delete">
-                                <button class="weather__btn btn"><span>&#8211;</span></button>
-                            </div>
-                            <div class="weather__col">
-                                <div class="weather__time">10:44</div>
-                                <div class="weather__location">
-                                    <div class="weather__city">Warsaw</div>
-                                    <span>&#160;</span>
-                                    <div class="weather__country">PL</div>
-                                </div>
-                            </div>
-
-                            <div class="weather__icon">sun</div>
-                            <div class="weather__temp">13<span>&#176;</span></div>
-                            <div class="weather__drag">
-                                <span class="material-icons weather__drag-icon">
-                    menu
-                  </span>
-                            </div>
-                        </div>
-                        <div class="weather__days days" data-dayid="756135">
-                            <ul class="days__list">
-                                <div>
-                                    Lorem ipsum dolor sit, amet consectetur adipisicing elit. Quas quibusdam assumenda esse sequi velit blanditiis nesciunt, reiciendis doloribus tempora at corrupti cum soluta non ea modi distinctio aperiam ex animi?
-                                </div>
-                            </ul>
-                        </div>
-                    </li> -->
-                    <!-- <li class="weather__item" data-itemid="2643743">
-                        <div class="weather__actual">
-                            <div class="weather__delete">
-                                <button class="weather__btn btn"><span>&#8211;</span></button>
-                            </div>
-                            <div class="weather__col">
-                                <div class="weather__time">10:44</div>
-                                <div class="weather__location">
-                                    <div class="weather__city">London</div>
-                                    <span>&#160;</span>
-                                    <div class="weather__country">PL</div>
-                                </div>
-                            </div>
-
-                            <div class="weather__icon">sun</div>
-                            <div class="weather__temp">13<span>&#176;</span></div>
-                            <div class="weather__drag">
-                                <span class="material-icons weather__drag-icon">
-                    menu
-                  </span>
-                            </div>
-                        </div>
-                        <div class="weather__days days" data-dayid="2643743">
-                            <ul class="days__list">
-                                <div>
-                                    Lorem ipsum dolor sit, amet consectetur adipisicing elit. Quas quibusdam assumenda esse sequi velit blanditiis nesciunt, reiciendis doloribus tempora at corrupti cum soluta non ea modi distinctio aperiam ex animi?
-                                </div>
-                            </ul>
-                        </div>
-                    </li> -->
-                </ul>
+                <ul class="weather__list"></ul>
             </section>
-            <section class="search">
-                <form class="search__form">
-                    <input type="text" class="search__field" placeholder="Search" />
+            <section class="manage">
+                <form class="search">
+                    <input class="search__field" placeholder="" type="text" />
                     <button class="btn search__btn">
-              <span>Search</span>
-            </button>
+                        <span class="material-icons search__icon">
+                            add_circle
+                        </span>
+                    </button>
                 </form>
+
+                <form class="units">
+                    <div class="switch-field">
+                        <input checked id="radio-one" name="switch" type="radio" value="yes" />
+                        <label for="radio-one">
+                            <sapn>&#176;</sapn>C
+                        </label>
+                        <span>/</span>
+                        <input id="radio-two" name="switch" type="radio" value="no" />
+                        <label for="radio-two">
+                            <sapn>&#176;</sapn>F
+                        </label>
+                    </div>
+                </form>
+
+
             </section>
+
         </main>
     </div>
 </body>

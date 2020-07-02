@@ -1,6 +1,5 @@
 .container {
     max-width: 40rem;
-    min-height: 20rem;
     margin: 10px auto;
     box-shadow: 0 0 1px rgba(0, 0, 0, .5);
     border-radius: 2rem;
@@ -25,10 +24,39 @@
     display: flex;
     flex-direction: column;
     padding: 1.2rem;
+    min-height: 30rem;
+    justify-content: space-between;
+}
+
+.manage {
+    display: flex;
 }
 
 .search {
-    margin-top: 50%;
+    display: flex;
+    align-items: center;
+    margin-right: auto;
+    &:hover &__field {
+        width: 15rem;
+        box-shadow: 0 0 1px rgba(0, 0, 0, .5);
+    }
+    &__field {
+        width: 2.4rem;
+        padding-left: .5rem;
+        height: 2.5rem;
+        margin-right: -2rem;
+        border-radius: 2rem;
+        border: none;
+        transition: width .4s ease;
+        &:focus {
+            outline: none;
+            box-shadow: 0 0 0 1px rgba(0, 0, 0, .5), 0 0 0 1px rgba(0, 0, 0, .5)
+        }
+    }
+    &__icon {
+        color: #4ED44B;
+        font-size: 2.5rem;
+    }
 }
 
 .weather {
@@ -36,6 +64,7 @@
     &__item {
         display: flex;
         flex-direction: column;
+        cursor: pointer;
     }
     &__actual {
         display: flex;
@@ -56,9 +85,8 @@
         font-size: 1.6rem;
     }
     &__icon {
-        width: 3rem;
-        height: 3rem;
-        background-color: red;
+        width: 5rem;
+        height: 5rem;
     }
     &__temp {
         display: flex;
@@ -73,6 +101,10 @@
     &__drag,
     &__delete {
         display: none;
+    }
+    &__deg {
+        align-self: flex-start;
+        font-size: 2rem;
     }
 }
 
@@ -107,10 +139,13 @@
         align-items: center;
         display: flex;
     }
+    &__probability {
+        color: #095AF6;
+        font-size: 1.2rem;
+    }
     &__icon {
-        // width: 1rem;
-        // height: 1rem;
-        // background-color: red;
+        width: 3rem;
+        height: 3rem;
         margin-right: 1rem;
     }
     &__avtemp {

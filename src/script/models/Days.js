@@ -10,6 +10,9 @@ export default class Days {
             const respone = await fetch(url)
             const result = await respone.json()
             this.result = result.list
+
+
+
         } catch (err) {
             console.error('problem with getting days API')
         }
@@ -17,6 +20,12 @@ export default class Days {
     getFiveDays() {
         const fiveDays = this.result.slice(1)
         this.fiveDays = fiveDays
+
+        const fiveDaysIcons = fiveDays.map(day => [
+            `https://openweathermap.org/img/wn/${day.weather[0].icon}@2x.png`, day.weather[0].main
+        ])
+        this.icons = fiveDaysIcons
+
     }
 
 

@@ -27,18 +27,16 @@ const controlSearch = async() => {
         try {
             // get data
             await state.search.getResults();
+            controlDays(state.search.id)
             state.search.renderName()
                 // state.search.calcTime();
             searchViews.renderResult(state.search)
             searchViews.updateClock()
-            console.log(state.search);
         } catch {
             console.error("error");
         }
     } else alert("put name");
 };
-
-
 
 //listen for clicking the value
 elements.searchForm.addEventListener('submit', controlSearch)
@@ -52,115 +50,50 @@ elements.searchBtn.addEventListener("click", (e) => {
 });
 
 const controlDays = async(id) => {
-    const key = keys.api
+    const key = keys.api;
+    state.days = new Days(id, key)
     if (id) {
-        if (!state.days) state.days = new Days(id, key)
         try {
             await state.days.getDays()
-            state.days.getFiveDays()
-            searchDays.clearList()
-            searchDays.renderResults(state.days.fiveDays, id)
-            searchDays.toggleDays(id)
-
+            state.days.getFiveDays();
+            searchDays.renderResults(state.days.fiveDays, state.days.icons, id)
         } catch {
-            console.error('problem with displaying days')
+            console.error('problem with creating control Day');
         }
-
     }
 }
 
-
+//show/ hide 5 days and delete
 elements.weatherList.addEventListener('click', e => {
     const id = e.target.closest(".weather__item").dataset.itemid
-        // controlDays(id)
+    searchDays.toggleDays(id)
     if (e.target.matches(".weather__btn, .weather__btn *")) {
         searchViews.deleteItem(id)
-
     }
 
-
 })
-
-
-
 
 
 //edit each elemet
 elements.editBtn.addEventListener('click', () => {
+    editItems()
     const deleteContainers = document.querySelectorAll(".weather__delete");
     const dragDropContainers = document.querySelectorAll(".weather__drag");
-
+    const temperatureSwitch = document.querySelector(".switch-field")
+    temperatureSwitch.classList.toggle('isActive')
+    const showDays = document.querySelectorAll(".weather__days");
     [...deleteContainers, ...dragDropContainers].forEach(container => {
         container.classList.toggle('container--active')
     });
-
+    if (showDays) {
+        showDays.forEach(el => searchDays.hideElement(el));
+    }
 })
 
-
-
-// function setDate() {
-//     const now = new Date();
-//     console.log(now)
-// }
-
-// setInterval(
-//     setDate, 1000
-// )
-// setDate()
-
-
-// import {
-//     get,
-//     setData,
-//     succesHandler,
-//     getfiveDays,
-//     weather
-// } from "./promises.js";
-// // from "./async.js"
-
-// import {
-//     apiKey
-// } from "./apiKey"
-
-// import {
-//     failHandler
-// } from "./messages.js";
-
-// elements.searchForm.addEventListener("click", function() {
-//     const location = "los+angeles,us";
-//     const url = `https://api.openweathermap.org/data/2.5/weather?q=${location}&APPID=${apiKey}`;
-//     const fiveDays = `https://api.openweathermap.org/data/2.5/forecast?q=${location}&APPID=${apiKey}`;
-
-//     get(url)
-//         .then((result) => {
-
-//             return succesHandler(result);
-
-//         })
-//         .then((result) => {
-//             console.log(result);
-
-//             return setData(result);
-//         }).then(() => {
-//             // console.log(weather);
-
-//         })
-//         .catch((reason) => failHandler(reason));
-
-//     getfiveDays(fiveDays)
-//         .then((result) => {
-//             return succesHandler(result);
-//         })
-//         .then(result => {
-//                 // console.log(result);
-
-//                 const objc = result.list.filter((x, index) => {
-//                         return index[0], index % 8 === 0
-//                     })
-//                     // console.log(objc);
-//             }
-
-//         )
-//         .catch((reason) => failHandler(reason));
-
-// });
+const editItems = () => {
+    if (!elements.weatherList.classList.contains('edit') && items.length != 0) {
+        elements.weatherList.classList.add('edit')
+    } else {
+        elements.weatherList.classList.remove('edit')
+    }
+}
